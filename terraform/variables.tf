@@ -4,7 +4,7 @@ variable "project_name" {
 }
 variable "region" {
   type    = string
-  default = "us-west-1"
+  default = "us-east-1"
 }
 variable "ecr_repository" {
   type    = string
