@@ -22,7 +22,8 @@ resource "aws_iam_role" "ecr_github_role" {
         }
         Condition = {
           StringLike = {
-            "token.actions.githubusercontent.com:sub" = "repo:${var.user_github}/${var.github_repository}:*"
+            # GitHub's immutable sub claim format: repo:OWNER@OWNER_ID/REPO@REPO_ID:*
+            "token.actions.githubusercontent.com:sub" = "repo:${var.user_github}@215043923/${var.github_repository}@1308781939:*"
           }
         }
       }
