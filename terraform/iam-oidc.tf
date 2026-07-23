@@ -29,3 +29,33 @@ resource "aws_iam_role" "ecr_github_role" {
     ]
   })
 }
+
+resource "aws_iam_role_policy" "ecr_push" {
+  name = "ecr-push-policy"
+  role = aws_iam_role.ecr_github_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid      = "ECRAuth"
+        Effect   = "Allow"
+        Action   = "ecr:GetAuthorizationToken"
+        Resource = "*"
+      },
+      {
+        Sid    = "ECRPush"
+        Effect = "Allow"
+        Action = [
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:PutImage",
+          "ecr:InitiateLayerUpload",
+          "ecr:UploadLayerPart",
+          "ecr:CompleteLayerUpload",
+          "ecr:BatchGetImage"
+        ]
+        Resource = aws_ecr_repository.ecr.arn
+      }
+    ]
+  })
+}

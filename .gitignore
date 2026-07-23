@@ -1,5 +1,8 @@
 .env
 
+# Node
+node_modules/
+
 # Terraform
 .terraform.lock.hcl
 **/.terraform/*
@@ -15,3 +18,4 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
+
