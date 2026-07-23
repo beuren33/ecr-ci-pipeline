@@ -8,7 +8,7 @@ variable "region" {
 }
 variable "ecr_repository" {
   type    = string
-  default = "ecr-ci-pipeline-ECR-REPO"
+  default = "ecr-ci-pipeline"
 }
 variable "github_repository" {
   type    = string
